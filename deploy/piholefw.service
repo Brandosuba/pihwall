@@ -1,0 +1,15 @@
+[Unit]
+Description=Pi-hole Firewall Helper
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/home/pi/pihole-firewall
+Environment=PH_TOKEN=bcalvarioapikey1
+ExecStart=/usr/bin/java -jar /home/pi/pihole-firewall/target/pihole-firewall-1.0.0.jar stats
+SuccessExitStatus=0
+TimeoutStartSec=60
+StandardOutput=journal
+StandardError=journal
